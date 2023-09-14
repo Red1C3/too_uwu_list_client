@@ -34,6 +34,19 @@ Future<bool> deleteNote(int id) async {
   return Future.value(decodedReponse['done']);
 }
 
+Future<void> createNote(String note)async{
+  var url = Uri.http(host,'add');
+  var response=await _client.post(
+    url,
+    headers: {"content-type":"application/json"},
+    body: jsonEncode({"Note":note})
+  );
+
+  var decodedReponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+
+  return Future.value(decodedReponse['done']);
+}
+
 void close() {
   _client.close();
 }
