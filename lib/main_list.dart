@@ -32,7 +32,12 @@ class _MainListState extends State {
               return NoteWidget(
                   note: _notes[index],
                   deleteFunc: (int id) async {
-                    //TODO
+                    var success = await client.deleteNote(id);
+                    if (success) {
+                      fetchNotes();
+                    } else {
+                      //TODO show snackbar
+                    }
                   });
             })),
       ),
@@ -46,7 +51,7 @@ class _MainListState extends State {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     client.close();
     super.dispose();
   }

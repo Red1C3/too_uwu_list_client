@@ -23,6 +23,17 @@ Future<List<Note>> fetchNotes() async {
   return Future.value(notes);
 }
 
+Future<bool> deleteNote(int id) async {
+  var url = Uri.http(host, 'delete');
+  var response = await _client.post(url,
+      headers: {'content-type': 'application/json'},
+      body: jsonEncode({"id": id}));
+
+  var decodedReponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+
+  return Future.value(decodedReponse['done']);
+}
+
 void close() {
   _client.close();
 }
