@@ -12,11 +12,17 @@ Future<List<Note>> fetchNotes() async {
   var response = await _client.get(url);
 
   var decodedReponse =
-      jsonDecode(utf8.decode(response.bodyBytes)) as List<Note>;
+      jsonDecode(utf8.decode(response.bodyBytes)) as List<dynamic>;
 
-  return Future.value(decodedReponse);
+  var notes = <Note>[];
+  for (int i = 0; i < decodedReponse.length; i++) {
+    notes.add(
+        Note(id: decodedReponse[i]['id'], content: decodedReponse[i]['note']));
+  }
+
+  return Future.value(notes);
 }
 
-void close(){
+void close() {
   _client.close();
 }

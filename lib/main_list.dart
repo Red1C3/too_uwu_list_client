@@ -14,8 +14,9 @@ class _MainListState extends State {
   var _notes = <Note>[];
 
   Future<void> fetchNotes() async {
-    setState(() async {
-      _notes = await client.fetchNotes();
+    var notes = await client.fetchNotes();
+    setState(() {
+      _notes = notes;
     });
   }
 
@@ -41,6 +42,12 @@ class _MainListState extends State {
   @override
   void initState() {
     super.initState();
-    //await fetchNotes(); TODO do sync-wise
+    fetchNotes();
+  }
+
+  @override
+  void dispose(){
+    client.close();
+    super.dispose();
   }
 }

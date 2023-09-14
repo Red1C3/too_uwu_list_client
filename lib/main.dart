@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:too_uwu_list_client/main_list.dart';
-import 'client.dart' as client;
 
 void main() {
   runApp(const MainApp());
-  client.close();
 }
 
 class MainApp extends StatelessWidget {
@@ -16,6 +14,4 @@ class MainApp extends StatelessWidget {
       home: MainList(),
     );
   }
-
-  
 }
