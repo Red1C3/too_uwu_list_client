@@ -4,15 +4,21 @@ void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatelessWidget { //TODO turn stateful
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        appBar: AppBar(title: const Text("too-UwU-list")),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            var future = await Future.delayed(Duration.zero);
+            return future;
+            //TODO
+          },
+          child: ListView(),
         ),
       ),
     );
