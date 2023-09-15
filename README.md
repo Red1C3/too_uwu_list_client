@@ -11,5 +11,5 @@ Another client for [to-uwu-list-server](https://github.com/Red1C3/to-uwu-list-ba
 ## Supported Platforms
 Tested on GNU/Linux.
 
-# License
+## License
 [UNLICENSE](./LICENSE)
