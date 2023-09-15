@@ -30,19 +30,24 @@ class _MainListState extends State {
         child: ListView.builder(
             itemCount: _notes.length,
             itemBuilder: ((context, index) {
-              return NoteWidget(
-                  note: _notes[index],
-                  deleteFunc: (int id) {
-                    client.deleteNote(id).then((success) {
-                      if (success) {
-                        fetchNotes();
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text("Failed to delete note")));
-                      }
-                    });
-                  });
+              return DecoratedBox(
+                  decoration: const BoxDecoration(
+                      border: BorderDirectional(
+                    top: BorderSide(color: Color.fromARGB(255, 143, 143, 143)),
+                  )),
+                  child: NoteWidget(
+                      note: _notes[index],
+                      deleteFunc: (int id) {
+                        client.deleteNote(id).then((success) {
+                          if (success) {
+                            fetchNotes();
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text("Failed to delete note")));
+                          }
+                        });
+                      }));
             })),
       ),
       floatingActionButton: FloatingActionButton(
