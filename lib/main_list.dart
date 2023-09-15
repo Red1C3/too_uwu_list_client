@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:too_uwu_list_client/add_note_dialog.dart';
 import 'package:too_uwu_list_client/note_model.dart';
 import 'package:too_uwu_list_client/note_widget.dart';
 import 'client.dart' as client;
@@ -40,6 +41,15 @@ class _MainListState extends State {
                     }
                   });
             })),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await showDialog(
+              context: context,
+              builder: (BuildContext context) => const AddNoteDialog());
+          fetchNotes();
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
