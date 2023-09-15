@@ -2,7 +2,7 @@
 
 Another client for [to-uwu-list-server](https://github.com/Red1C3/to-uwu-list-back-end) using Flutter.
 
-# Features
+## Features
 - Minimalistic design.
 - Create Notes.
 - Delete Notes.
