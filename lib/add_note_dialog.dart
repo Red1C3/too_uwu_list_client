@@ -10,6 +10,17 @@ class AddNoteDialog extends StatefulWidget {
 class _AddNoteDialogState extends State {
   final _controller = TextEditingController();
 
+  void _addNote(BuildContext context) {
+    var text = _controller.text;
+    client.createNote(text).then((value) {
+      if (value) {
+        Navigator.pop(context);
+      } else {
+        //TODO show snackbar
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -17,22 +28,14 @@ class _AddNoteDialogState extends State {
       content: Column(
         children: [
           TextField(
+            autofocus: true,
             controller: _controller,
+            onSubmitted: (value) => _addNote(context),
           ),
           Row(
             children: [
               ElevatedButton(
-                  onPressed: () {
-                    var text = _controller.text;
-                    client.createNote(text).then((value) {
-                      if (value) {
-                        Navigator.pop(context);
-                      } else {
-                        //TODO show snackbar
-                      }
-                    });
-                  },
-                  child: const Text("Add")),
+                  onPressed: () => _addNote(context), child: const Text("Add")),
               ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
