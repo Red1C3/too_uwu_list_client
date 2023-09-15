@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'client.dart' as client;
 
 class AddNoteDialog extends StatefulWidget {
   const AddNoteDialog({super.key});
@@ -18,7 +19,27 @@ class _AddNoteDialogState extends State {
           TextField(
             controller: _controller,
           ),
-          Row() //TODO add cancel and add buttons
+          Row(
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    var text = _controller.text;
+                    client.createNote(text).then((value) {
+                      if (value) {
+                        Navigator.pop(context);
+                      } else {
+                        //TODO show snackbar
+                      }
+                    });
+                  },
+                  child: const Text("Add")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Cancel"))
+            ],
+          )
         ],
       ),
     );
