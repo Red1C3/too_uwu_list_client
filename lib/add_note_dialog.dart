@@ -26,6 +26,7 @@ class _AddNoteDialogState extends State {
     return AlertDialog(
       title: const Text("Add Note"),
       content: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             autofocus: true,
