@@ -16,7 +16,7 @@ class _AddNoteDialogState extends State {
       if (value) {
         Navigator.pop(context);
       } else {
-        //TODO show snackbar
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Failed to create note")));
       }
     });
   }

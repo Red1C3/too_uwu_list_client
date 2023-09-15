@@ -32,13 +32,16 @@ class _MainListState extends State {
             itemBuilder: ((context, index) {
               return NoteWidget(
                   note: _notes[index],
-                  deleteFunc: (int id) async {
-                    var success = await client.deleteNote(id);
-                    if (success) {
-                      fetchNotes();
-                    } else {
-                      //TODO show snackbar
-                    }
+                  deleteFunc: (int id) {
+                    client.deleteNote(id).then((success) {
+                      if (success) {
+                        fetchNotes();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text("Failed to delete note")));
+                      }
+                    });
                   });
             })),
       ),
