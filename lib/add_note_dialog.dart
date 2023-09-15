@@ -16,7 +16,8 @@ class _AddNoteDialogState extends State {
       if (value) {
         Navigator.pop(context);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Failed to create note")));
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Failed to create note")));
       }
     });
   }
@@ -34,14 +35,20 @@ class _AddNoteDialogState extends State {
             onSubmitted: (value) => _addNote(context),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              ElevatedButton(
-                  onPressed: () => _addNote(context), child: const Text("Add")),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text("Cancel"))
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      onPressed: () => _addNote(context),
+                      child: const Text("Add"))),
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Cancel")))
             ],
           )
         ],
